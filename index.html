@@ -1,93 +1,120 @@
 <!DOCTYPE html>
 <html lang="km">
 <head>
-<meta charset="UTF-8"> <!-- ធានាការអានអក្សរខ្មែរ Unicode បាន 100% -->
+<meta charset="UTF-8">
 <style>
-  /* ទាញយក Font អក្សរខ្មែរពី Google Fonts */
   @import url('https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Moul&display=swap');
 
   body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e9ecef;
-    /* ប្រើ Font Battambang ជាគោល */
-    font-family: 'Battambang', 'Khmer OS Battambang', sans-serif; 
+    background-color: #222;
     padding: 20px;
+    margin: 0;
   }
-  .poster {
-    width: 650px;
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  
+  /* ទំហំស្តង់ដារសម្រាប់ Post Facebook (ការ៉េ 1:1) */
+  .fb-post {
+    width: 800px;
+    height: 800px;
+    /* រូបភាពប្រាសាទអង្គរវត្តជា Background */
+    background-image: url('https://images.unsplash.com/photo-1540306385200-d85c4bf2f4e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border: 8px solid #FFD700; /* ស៊ុមពណ៌មាស */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* ផ្ទាំងពណ៌ខ្មៅថ្លាគ្របពីលើរូបភាព ដើម្បីឲ្យអក្សរលេចច្បាស់ */
+  .overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.65); /* កម្រិតងងឹត 65% */
+    z-index: 1;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2; /* ឲ្យអក្សរនៅពីលើ */
+    padding: 40px;
+    width: 90%;
+  }
+
+  .company {
+    color: #FFD700; /* ពណ៌មាស */
+    font-family: 'Moul', serif;
+    font-size: 38px;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  }
+  
+  .company-en {
+    color: #FFF;
+    font-family: 'Battambang', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+  }
+
+  .title {
+    color: #FFFFFF;
+    font-family: 'Moul', serif;
+    font-size: 32px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  }
+
+  .date-box {
+    background: rgba(255, 215, 0, 0.15); /* ផ្ទៃពណ៌មាសថ្លាៗ */
+    border: 2px solid #FFD700;
     padding: 25px;
     border-radius: 15px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    text-align: center;
-    border: 5px solid #8B0000;
-  }
-  .poster-inner {
-    background: #ffffff;
-    padding: 40px 30px;
-    border-radius: 10px;
-    border: 2px dashed #8B0000;
-  }
-  .company {
-    color: #8B0000;
-    font-family: 'Moul', serif; /* Font អក្សរឆ្លាក់ (Moul) */
+    margin: 30px auto;
+    font-family: 'Battambang', sans-serif;
     font-size: 26px;
-    margin-bottom: 5px;
-    line-height: 1.5;
-  }
-  .company-en {
-    color: #8B0000;
-    font-weight: 700;
-    font-size: 18px;
-    margin-bottom: 25px;
-  }
-  .title {
-    color: #2c3e50;
-    font-family: 'Moul', serif; /* Font អក្សរឆ្លាក់ (Moul) */
-    font-size: 24px;
-    margin-bottom: 25px;
-    text-decoration: underline;
-    text-decoration-color: #8B0000;
-    text-underline-offset: 8px;
-  }
-  .date-box {
-    background: #FFF3CD;
-    border: 2px solid #FFEEBA;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 25px 0;
-    font-size: 18px;
-    color: #856404;
-    line-height: 2;
-  }
-  .date-box span {
-    font-weight: 700; /* អក្សរដិត */
-    color: #D32F2F;
-    font-size: 20px;
-  }
-  .greeting {
-    font-size: 16px;
-    color: #444;
+    color: #FFFFFF;
     line-height: 1.8;
-    margin-bottom: 30px;
-    text-align: justify;
-    text-align-last: center;
-    padding: 0 10px;
+    backdrop-filter: blur(5px);
+    width: 80%;
   }
+
+  .date-box span {
+    color: #FFD700;
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  .greeting {
+    color: #EEEEEE;
+    font-family: 'Battambang', sans-serif;
+    font-size: 20px;
+    line-height: 1.8;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    padding: 0 20px;
+  }
+
   .footer {
+    color: #FFD700;
     font-family: 'Moul', serif;
-    font-size: 24px;
-    color: #D32F2F;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    font-size: 36px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
   }
 </style>
 </head>
 <body>
 
-<div class="poster">
-  <div class="poster-inner">
+<div class="fb-post">
+  <div class="overlay"></div>
+  <div class="content">
     <div class="company">ក្រុមហ៊ុន ឫទ្ធីក្រានីត (ខេមបូឌា)</div>
     <div class="company-en">Rithy Granite (Cambodia) Co., Ltd.</div>
     
@@ -99,7 +126,7 @@
     </div>
 
     <div class="greeting">
-      ក្នុងឱកាសពិធីបុណ្យចូលឆ្នាំថ្មី ប្រពៃណីជាតិខ្មែរ ខាងមុខនេះ ថ្នាក់ដឹកនាំក្រុមហ៊ុន សូមគោរពជូនពរ អតិថិជន ដៃគូសហការ និងបុគ្គលិកទាំងអស់ សូមជួបប្រទះតែសេចក្តីសុខ សុខភាពល្អបរិបូរណ៍ រកទទួលទានមានបាន និងធ្វើដំណើរជិតឆ្ងាយប្រកបដោយសុវត្ថិភាព។
+      ក្នុងឱកាសពិធីបុណ្យចូលឆ្នាំថ្មី ប្រពៃណីជាតិខ្មែរ សូមគោរពជូនពរ អតិថិជន ដៃគូសហការ និងបុគ្គលិកទាំងអស់ ជួបប្រទះតែសេចក្តីសុខ សុខភាពល្អ រកទទួលទានមានបាន និងធ្វើដំណើរជិតឆ្ងាយប្រកបដោយសុវត្ថិភាព។
     </div>
 
     <div class="footer">🌸 សួស្តីឆ្នាំថ្មី 🌸</div>
